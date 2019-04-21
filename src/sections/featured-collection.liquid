@@ -1,0 +1,74 @@
+{% comment %}
+------------------------------------------------------------------------------
+Section: Featured collection - This the main section that you should be working
+on - Main styling is done in /styles/sections/featured-collection.scss
+------------------------------------------------------------------------------
+{% endcomment %}
+
+{{ "//ajax.googleapis.com/ajax/libs/jquery/2.2.3/jquery.min.js" | script_tag }}
+{{ "https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js" | script_tag }}
+
+<section
+  class="featured-collection container"
+  data-section-id="{{ section.id }}"
+  data-section-type="featured-collection"
+>
+  {%- assign collection = collections[section.settings.collection] -%}
+
+  <div class="intro">
+    <h2>{{ collection.title | escape }}</h2>
+
+    <p>{{ collection.description }}</p>
+  </div>
+
+  {% for product in collection.products limit: 6 %} {% assign current_variant =
+  product.selected_or_first_available_variant %}
+
+  <a class="product" href="{{ product.url | within: collection }}">
+    <div class="product__image">
+      
+      {% for tags in collection.tags limit: 1 %}
+        <span class="product__sale-button button button-primary small">{{ tags | remove_first: 'badge: ' | capitalize }}</span>
+      {% endfor %}
+
+
+      {% if product.featured_image != blank %}
+      {{ product.featured_image | img_url: "large" | img_tag }}
+      {% endif %}
+      <div class="product__cart-button">
+        <span
+          class="button button-secondary"
+          js-ajax-cart="addToCart"
+          data-variant-id="{{ current_variant.id }}"
+          data-quantity="1"
+          >Add to cart</span
+        >
+      </div>
+    </div>
+
+    <div class="product__info">
+      <p class="product__title">{{ product.title | escape }}</p>
+
+      <span class="product__price">
+        {{ product.price | money }}
+        
+      </span>
+    </div>
+  </a>
+  {% endfor %}
+</section>
+
+<div class="container">
+  <div class="row">
+    <a
+      class="button button-primary centered large"
+      href="{{ product.url | within: collection }}"
+      >View collection</a
+    >
+  </div>
+</div>
+
+{% schema %} { "name": "Featured collection", "settings": [ { "type": "text",
+"id": "title", "label": "Heading", "default": "Featured collection" }, { "id":
+"collection", "type": "collection", "label": "Collection" } ], "presets": [ {
+"name": "Featured collection", "category": "Collection" } ] } {% endschema %}

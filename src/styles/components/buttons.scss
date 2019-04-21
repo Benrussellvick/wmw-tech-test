@@ -1,0 +1,62 @@
+.button {
+    // display: inline-block;
+    // vertical-align: middle;
+    width: auto;
+    border: 0;
+    text-align: center;
+    white-space: nowrap;
+    text-decoration: none;
+    user-select: none;
+    appearance: none;
+
+    text-decoration: none;
+    transition: all 0.3s ease-in;
+
+    display: inline-block;
+    margin-bottom: 0;
+    font-weight: bold;
+    white-space: nowrap;
+    vertical-align: middle;
+    touch-action: manipulation;
+    cursor: pointer;
+    background-image: none;
+    padding: 12px;
+    font-size: 1.6rem;
+    line-height: 1.6rem;
+    color: white;
+    background: white;
+
+    &.small {
+        padding: 6px;
+    }
+
+    &.large {
+        padding: 15px;
+    }
+
+    &.centered {
+        margin: 0 auto;
+        display: block;
+    }
+
+    &-primary {
+        background: $ft-heading-text;
+        color: white;
+
+        &:hover {
+            color: $ft-color-blue;
+            background-color: white;
+        }
+    }
+
+    &-secondary {
+        background-color: white;
+        color: $ft-heading-text;
+
+        &:hover {
+
+            color: white;
+            background-color: $ft-heading-text;
+        }
+    }
+}

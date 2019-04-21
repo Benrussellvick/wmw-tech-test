@@ -1,0 +1,63 @@
+html {
+    background-color: $color-body;
+    box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body,
+html {
+    height: 100%;
+}
+
+
+.container {
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto
+}
+
+@include media-query($small) {
+    .container {
+        max-width: 540px
+    }
+}
+
+@include media-query($medium) {
+    .container {
+        max-width: 720px
+    }
+}
+
+@include media-query($large) {
+    .container {
+        max-width: 960px
+    }
+}
+
+@include media-query($widescreen) {
+    .container {
+        max-width: 1140px
+    }
+}
+
+.container-fluid {
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px
+}
